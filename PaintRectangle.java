@@ -23,7 +23,7 @@ public class PaintRectangle
     int minX, maxX, minY, maxY;
     private Color colorFilled =  Color.BLACK;
 
-    public PaintRectangle(int x, int y, int width, int height, Color colorFilled, Color colorBorder) 
+    public PaintRectangle(int x, int y, int width, int height, Color colorFilled) 
     {
         minX = x;
         minY = y;
