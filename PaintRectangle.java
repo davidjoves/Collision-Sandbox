@@ -57,7 +57,7 @@ public class PaintRectangle {
 		}
 		
 	}
-    
+    @Override
     public void draw(Graphics g) {
         g.setColor(colorFilled);
         g.fillRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
