@@ -16,7 +16,6 @@ package CollisionSandbox.src;
 
 import java.awt.*;
 
-import CollisionSandbox.src.Object;
 
 public class PaintRectangle 
 {
