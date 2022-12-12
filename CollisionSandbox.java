@@ -1,25 +1,42 @@
-package CollisionSandbox.src;
+/**
+ * Responsibilities of class: Creates a GUI that is able to draw and repaint simulations of circles in a 2D space. 
+ * 
+ * @authors David Joves, Junhyeok "Jun" Oh, Juan Paulo "JP" Reyes
+ * 
+ * 
+ * @References 	https://www.youtube.com/watch?v=hlgUwhtI44g (drawing our simulator)
+ * 				https://en.wikipedia.org/wiki/Elastic_collision(formula for ball collision)
+ * 				https://www.youtube.com/watch?v=PdOTxTIR4Ro (formula to detect collision)
+ * 				https://www.youtube.com/watch?v=eED4bSkYCB8 (implementing collision detection)		
+ * 				https://youtu.be/Kmgo00avvEw (GUI fundamentals)
+ * 				https://www.youtube.com/watch?v=OI-TFbHQhtA(for action listeners)
+ * 				https://www.folkstalk.com/tech/using-timer-to-repaint-in-the-fixed-time-then-continuing-calculation-with-example/ (for repainting with timer)
+ * 				https://www.youtube.com/watch?v=hlgUwhtI44g (repainting with timer example)
+ * 
+ * 				https://stackoverflow.com/questions/10866762/use-of-overriding-getpreferredsize-instead-of-using-setpreferredsize-for-fix(for getPreferredSize method in draweverything class)
+ * 				
+ * 				Morelli, R., &amp; Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving. <br>
+ * 				Frankie, T. (2022) POGIL Recursion
+ * 				Frankie, T TowersofHanoiGUI.java 
+ * 				Frankie, T Discs.java 
+ * 
+ * @Verson 1.0	
+ */	
+
+package src;
+
 
 import javax.swing.*;
 
-import CollisionSandbox.src.Object;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class CollisionSandbox extends JFrame
@@ -45,7 +62,7 @@ public class CollisionSandbox extends JFrame
 	
 	private static JPanel customizePanel;
 	private static JSlider xSlider;
-	private static JLabel xLable ;
+	private static JLabel xLable;
 	private static JSlider ySlider;
 	private static JLabel yLable ;
 	private static JSlider speedSlider ;
@@ -56,22 +73,22 @@ public class CollisionSandbox extends JFrame
 	private static JLabel radiusLable;
 	private static JButton customButton;	
 	
-	
-	
 	public CollisionSandbox()
 	{
 		super("Collision Sandbox");
 		setSize(900,800);
 		
-		createSandboxPanel(borderWidth, borderHeight);
-		createAddButtonPanel();
-		createControlPanel();
-		createCustomPanel();
-		setButtons();
+		createSandboxPanel(borderWidth, borderHeight); //simulator
+		createAddButtonPanel(); //add or clear simulator
+		createControlPanel(); // pause or play
+		createCustomPanel(); //custom own object
+		setButtons(); //add each button is a listener
+		
+		
 		
 		setLayout(new BorderLayout(20,20));
 		add(controlPanel,BorderLayout.NORTH);
-		add(sandboxPanel,BorderLayout.CENTER);
+		getContentPane().add(sandboxPanel,BorderLayout.CENTER);
 		add(addButtonPanel,BorderLayout.EAST);
 		add(customizePanel,BorderLayout.WEST);
 		
@@ -80,50 +97,68 @@ public class CollisionSandbox extends JFrame
 		
 	}
 	
+	/**
+	 * Purpose: Creates panel for collision simulator
+	 * @param height
+	 * @param width
+	 */
 	public void createSandboxPanel(int height, int width)
+
 	{
 		sandboxPanel = new JPanel();
 		borderWidth = width;
 		borderHeight = height;
 		
-		border = new PaintRectangle(0,0, borderWidth, borderHeight, Color.BLACK, Color.WHITE);
+		border = new PaintRectangle(0,0, borderWidth, borderHeight, Color.BLACK); //creates and sets rectangle object
+		DrawEverything draw = new DrawEverything();//use class to draw rectangle and object
 		
-		DrawEverything draw = new DrawEverything();
-		sandboxPanel.add(draw);		
+		sandboxPanel.add(draw);	//add all drawings in panel 
+		
 		
 	}
+	
+	/**
+	 * Responsibilities of class: Holds methods to draw everything from other classes
+	 * @author David Joves, Junhyeok "Jun" Oh, Juan Paulo "JP" Reyes
+	 *
+	 */
  	private class DrawEverything extends JPanel
  	{
  		@Override
+ 		/**
+ 		 * Purpose: draws rectangle and objects in this class
+ 		 */
  		public void paintComponent(Graphics g)
  		{
  			border.draw(g);
  			for(Object object : objectList)
  			{
+ 				//draw each object in list
  				object.drawObject(g);
  			}
  		}
  	
 	@Override
+	/**
+	 * Purpose: Resizes sandbox panel to fit with JFrame
+	 *
+	 */
 		public Dimension getPreferredSize()
 		{
 			return (new Dimension(borderWidth,borderHeight));
 		}
 
  	}
-
-
 	
+ 	/**
+ 	 * Purpose: Create a panel to add a random ball object, collision demo and a reset option
+ 	 */
 	public void createAddButtonPanel()
 	{
 		addButtonPanel = new JPanel();
 		addButton = new JButton("Add Random Ball");
 		demoButton = new JButton("CollisionDemo");
 		resetButton = new JButton("Reset");
-		
-		
-		
-
 		
 		addButtonPanel.setLayout(new GridLayout(3,0));
 		addButtonPanel.add(addButton);
@@ -133,6 +168,9 @@ public class CollisionSandbox extends JFrame
 		
 	}
 	
+	/**
+	 * Purpose: Create a panel to pause and play our program
+	 */
 	public void createControlPanel()
 	{
 		controlPanel = new JPanel();
@@ -156,6 +194,10 @@ public class CollisionSandbox extends JFrame
 	 	controlPanel.add(pause);
 //	 	
 	}
+	
+	/**
+	 * Purpose: Creates a panel to customize a object using sliders 
+	 */
 	public void createCustomPanel()
 	{
 		customizePanel = new JPanel();
@@ -222,7 +264,11 @@ public class CollisionSandbox extends JFrame
 
 	}
 	
-	
+	/**
+	 * Purpose: Have objects collide together and set new speeds and xPositions after a collision
+	 * @param a
+	 * @param b
+	 */
 	public static void objectCollisions(Object a, Object b)
 	{ 
 		 double aCurrXSpeed = a.getXSpeed();
@@ -249,7 +295,7 @@ public class CollisionSandbox extends JFrame
 	         
 	            double dotProduct = xDist * dotXSpeed + yDist * dotYSpeed;
 	            
-	            if(dotProduct < 0)  //checks if vectors are pointing in opposite directions direction
+	            if(dotProduct < 0)  //checks if vectors are pointing in opposite direction
 	            {
 	            	double totalMass = a.getMass() + b.getMass();	        
 	   	        	double collisionMassOnA = (2 * b.getMass() / totalMass);
@@ -260,8 +306,8 @@ public class CollisionSandbox extends JFrame
 	 	            double elasticColA = (collisionMassOnA * collisionProduct);
 	 	            double elasticColB = (collisionMassOnB * collisionProduct);
 	 	            
-	 	        	
-	 	        	  a.setXSpeed(aCurrXSpeed -(elasticColA * xDist));
+	 	        	//final speed formulas for any object
+	 	        	a.setXSpeed(aCurrXSpeed -(elasticColA * xDist));
 	 	            a.setYSpeed(aCurrYSpeed -(elasticColA * yDist));
 	 	            b.setXSpeed(bCurrXSpeed + (elasticColB * xDist));
 	 	            b.setYSpeed(bCurrYSpeed +(elasticColB * yDist));
@@ -269,10 +315,13 @@ public class CollisionSandbox extends JFrame
 	        }     	
 		}
 
+	/**
+	 * Purpose: Have each object collide to JPanel walls or with each other
+	 */
 	public static void collide()
 	{
 	
-		Rectangle panel = new Rectangle(border.minX, border.minY,border.maxX, border.maxY);
+		Rectangle panel = new Rectangle(border.getMinX(), border.getMinY(),border.getMaxX(), border.getMaxY());
 		
 		for(int i = 0; i < objectList.size(); i++)
 		{
@@ -290,7 +339,9 @@ public class CollisionSandbox extends JFrame
 
 	}
 
-
+	/**
+	 * Purpose: Gives each button in JFrame an ActionListener
+	 */
 	public void setButtons()
 	{
 		ActionListener buttonListeners = new ActionListener() {
@@ -351,8 +402,11 @@ public class CollisionSandbox extends JFrame
 		pause.addActionListener(buttonListeners);
 		customButton.addActionListener(buttonListeners);
 	}
-
 	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		CollisionSandbox box = new CollisionSandbox();
