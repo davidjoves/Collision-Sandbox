@@ -5,6 +5,8 @@
  * 
  * 
  * @References
+ *				https://www.youtube.com/watch?v=tHNWIWxRDDA&t=1s (for wall collisions)
+ *				https://youtu.be/qIr2XYZrznI(coding wall)
  * 				Morelli, R., &amp; Walde, R. (2016). Java, Java, Java: Object-Oriented Problem Solving. <br>
  * 					-Case Study: Game of Pong (Chapter 14)
  * 				Frankie, T Tower.Java (draw object method) 
@@ -12,25 +14,58 @@
  * @Verson 1.0	
  */
 
-package CollisionSandbox.src;
+package src;
 
 import java.awt.*;
 
-
 public class PaintRectangle 
 {
-    int minX, maxX, minY, maxY;
+    private int minX, maxX, minY, maxY;
     private Color colorFilled =  Color.BLACK;
 
     public PaintRectangle(int x, int y, int width, int height, Color colorFilled) 
     {
-        minX = x;
-        minY = y;
-        maxX = x + width - 1;
-        maxY = y + height - 1;
+        this.minX = x;
+        this.minY = y;
+        this.maxX = x + width - 1;
+        this.maxY = y + height - 1;
         this.colorFilled = colorFilled;
     }
  
+    //getters
+    /**
+     * Purpose: Get the minimum x distance for the wall for our ball to collide
+     * @return minX
+     */
+    public int getMinX()
+    {
+    	return minX;
+    }
+    /**
+     * Purpose: Get the maximum x distance for the wall for our ball to collide
+     * @return minX
+     */
+    public int getMaxX()
+    {
+    	return maxX;
+    }
+    /**
+     * Purpose: Get the minimum y distance for the wall for our ball to collide
+     * @return minX
+     */
+    public int getMinY()
+    {
+    	return minY;
+    }
+    /**
+     * Purpose: Get the maximum y distance for the wall for our ball to collide
+     * @return minX
+     */
+    public int getMaxY()
+    {
+    	return maxY;
+    }
+    
     /**
      * Purpose: Create collisions using a rectangle object
      * @param wall
@@ -61,7 +96,6 @@ public class PaintRectangle
 			object.setXPos(rightBound);
 		}
 		
-		
 		if(currObjectYPos < upperBound)
 		{
 			object.setYSpeed(-object.getYSpeed());
@@ -82,7 +116,7 @@ public class PaintRectangle
 	public void draw(Graphics g) 
     {
         g.setColor(colorFilled);
-        g.fillRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
-        g.drawRect(minX, minY, maxX - minX - 1, maxY - minY - 1);
+        g.fillRect(minX, minY, maxX, maxY);
+        g.drawRect(minX, minY, maxX, maxY);
     }
 }
