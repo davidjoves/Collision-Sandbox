@@ -6,7 +6,7 @@
 
 ```Dev Notes```
 <br>
-- Our group decided to create a 2D simulation that demonstrated collision between objects. Each object has a parameter of mass, speed (x and y), radius, and position (x and y). 
+- Our group decided to create a 2D simulation that demonstrated collision between objects. Each object has a parameter of speed (x and y), radius, and position (x and y). 
 Below is our UML for our OOP. 
 <br>
 
