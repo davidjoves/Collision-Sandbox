@@ -4,8 +4,22 @@
 **_Professor: Tasha Frankie_** 
 <br>
 
+```Dev Notes```
+<br>
+- Our group decided to create a 2D simulation that demonstrated collision between objects. Each object has a parameter of mass, speed, radius, X position and Y position. 
+Below is our UML for our OOP. 
+<br>
+
+![Project 2 UML](https://user-images.githubusercontent.com/106414830/231086663-847bf61d-edec-4b20-a2cf-1fb9d56d8fa2.PNG)
+
+<br>
+
+- GUI Functions include: Pause button, Play button, Add Random Ball button, Collision Demo button, Reset button, Add Custom Ball button, and sliders to alter parameter of objects.
+<br>
+
 ```GUI```
 <br>
+
 ![image](https://user-images.githubusercontent.com/106414830/231078902-4a5a11d1-096b-439d-a65f-896bca10bd10.png)
 
 ```Project Demo```
@@ -17,3 +31,6 @@
 ![2023-04-10-23-53-59_Trim-_3_ (1)](https://user-images.githubusercontent.com/106414830/231084152-4add982a-a133-4ac8-b45c-91dd53572b19.gif)
 <br>
 ![2023-04-10-23-53-59_Trim-_2_](https://user-images.githubusercontent.com/106414830/231084183-98cc4ce1-df41-4870-bd19-779bc3af13b5.gif)
+<br>
+![2023-04-10-23-53-59_Trim-_5_](https://user-images.githubusercontent.com/106414830/231085336-744698aa-7cce-4bc1-9146-f0eff1fd297b.gif)
+
