@@ -1,5 +1,7 @@
 # Collision-Sandbox
-**_Final project for San Diego Mesa College CISC 191 (Intermediate Java Programming)_**
+**_Final OOP project for San Diego Mesa College CISC 191 (Intermediate Java Programming)_** 
+<br>
+**_Professor: Tasha Frankie_** 
 <br>
 
 ```GUI```
@@ -8,10 +10,9 @@
 
 ```Project Demo```
 <br>
-
-![2023-04-10-23-53-59_Trim](https://user-images.githubusercontent.com/106414830/231083813-a5570f38-5f6c-4d80-872e-45a2c7e3ba09.gif)
-<br>
 ![2023-04-10-23-53-59_Trim-_4_](https://user-images.githubusercontent.com/106414830/231084108-65f8703d-5b63-473e-a0d9-203179c5a2c3.gif)
+<br>
+![2023-04-10-23-53-59_Trim](https://user-images.githubusercontent.com/106414830/231083813-a5570f38-5f6c-4d80-872e-45a2c7e3ba09.gif)
 <br>
 ![2023-04-10-23-53-59_Trim-_3_ (1)](https://user-images.githubusercontent.com/106414830/231084152-4add982a-a133-4ac8-b45c-91dd53572b19.gif)
 <br>
